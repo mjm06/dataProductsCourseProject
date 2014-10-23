@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Introducing sleep-app</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Introducing sleep-app">
+  <meta name="author" content="">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/zenburn.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Introducing sleep-app</h1>
+    <h2>A shiny app for exploring relationships among sleep needs and trophic level in mammals</h2>
+    <p><br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Introduction to <code>sleepy-app</code></h2>
+  </hgroup>
+  <article data-timings="">
+    <p><font size=4>
+The app <a href:"http://www......">sleepy-app</a> allows the user to explore the sleep requirements for four mammalian &quot;feeding groups&quot;:  omnivores, carnivores, herbivores, and insectivores). When a feeding group is selected, the app automatically produces a scatterplot showing the relationship between body mass and sleep needs for the selected group, overlays a smoothed linear fit on the plot, and displays the best-fit linear regression model with body weight as the predictor and hours of sleep per day as the outcome.
+</font></p>
+
+<p><font size=4>
+The app makes use of the <code>msleep</code> dataset available in the <code>ggplot2</code>package. 
+The <code>msleep</code> dataset contains sleep information for 83 mammal species. Omnivore, carnivore, herbivore, and insectivore species are all represented, along with seven mammal species of Order Rodentia, Hyracoidea, Diprodontia, and Erinaceomorpha that are not classified in one of these four feeding groups. A sample of the <code>msleep</code> data is shown below:
+</font></p>
+
+<pre><code>##      name              vore    order       sleep 
+## [1,] &quot;Cheetah&quot;         &quot;carni&quot; &quot;Carnivora&quot; &quot;12.1&quot;
+## [2,] &quot;Owl monkey&quot;      &quot;omni&quot;  &quot;Primates&quot;  &quot;17&quot;  
+## [3,] &quot;Mountain beaver&quot; &quot;herbi&quot; &quot;Rodentia&quot;  &quot;14.4&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Exploring the <code>msleep</code> dataset</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><font size=4>
+Exploratory analysis of <code>msleep</code> reveals that, for omnivores, herbivores, carnivores, and insectivores, there seems to be a negative linear correlation between log<sub>10</sub>animal body weight (kg) and the hours of sleep per day the animal needs; that is, the larger the animal, the less sleep it needs. This is illustrated by the following plot:
+</font size></p>
+
+<p><img src="assets/fig/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"> </p>
+
+<p><font size=4>
+However, because there is so much overlap among the different mammal groups as regards body size, the relationship between body size and sleep requirements would be better visualized using a dynamic plot:  such as <code>sleepy-app</code>.
+</font></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Using <code>sleepy-app</code>: required input</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><font size=3>
+First, choose the mammal type (carnivore, omnivore, herbivore, or insectivore) you would like to analyze by selecting a radio button in the upper left. Only one mammal type may be analyzed at a time.
+</font></p>
+
+<p><font size=3>
+After the mammal type is input, the app returns the list of the mammal orders to which the species being analyzed belong (e.g. Carnivora, Primates, Rodentia, and so on).
+In addition, for the selected mammal type, the app creates a scatterplot of log<sub>10</sub> body size and sleep needs, overlays a smoothed linear fit on the plot, and displays the best-fit linear regression model for these data (predictor=body weight; outcome=hours of sleep per day). An example is shown below:
+</font></p>
+
+<p><font size=2>
+<center>
+<b>Total Daily Sleep (Hours) vs. Log<sub>10</sub> Body Weight (kg) for Mammalian Carnivores</b>
+</center>
+</font></p>
+
+<p><img src="assets/fig/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Insights on animal sleep habits from <code>sleepy-app</code></h2>
+  </hgroup>
+  <article data-timings="">
+    <p><font size=4>
+While the static plot in Slide 2 shows that, in general, larger mammals of each
+feeding type need less sleep than mammals of the same feeding type, this relationship is much easier to see using the dynamic scatterplots in <code>sleepy-app</code>. 
+</font></p>
+
+<p><font size=4>
+Other, fundamental features of the <code>msleep</code> dataset are much easier to see using <code>sleepy-app</code> than a static plot. Specifically, the app underscores the fact that carnivores, in general, tend to have smaller body size, and smaller variance in body size, than herbivores do. 
+</font></p>
+
+<p><font size=4>
+Fascinatingly, the dynamic scatterplot in <code>sleepy-app</code> also makes it easy to detect unexpected features of the data. For example, there is little variation in the sleep requirements for omnivores across body sizes; the regression line fit to the omnivore data is much shallower than the regression line for carnivores, herbivores, or insectivores. 
+</font></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introduction to <code>sleepy-app</code>'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Exploring the <code>msleep</code> dataset'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Using <code>sleepy-app</code>: required input'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Insights on animal sleep habits from <code>sleepy-app</code>'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
